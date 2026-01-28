@@ -25,7 +25,7 @@ function StylizedPlanetModel() {
 export default function StylizedPlanet() {
   return (
     <div className="w-full h-full">
-      <Canvas>
+      <Canvas gl={{ alpha: true }} style={{ background: 'transparent' }}>
         <Suspense fallback={null}>
           <StylizedPlanetModel />
         </Suspense>
