@@ -55,6 +55,7 @@ export default function GamingPC() {
       <Canvas
         camera={{ position: [0, 0, 2.5], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
+        style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
           <GamingPCModel />

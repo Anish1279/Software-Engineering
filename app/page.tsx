@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
-import EarthSphere from '@/components/earth-sphere'
 import {
   Sheet,
   SheetContent,
@@ -16,6 +15,10 @@ const GamingPC = dynamic(() => import('@/components/gaming-pc'), {
 })
 
 const StylizedPlanet = dynamic(() => import('@/components/stylized-planet'), {
+  ssr: false,
+})
+
+const SpaceBackground = dynamic(() => import('@/components/space-background'), {
   ssr: false,
 })
 
@@ -43,22 +46,25 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-background overflow-x-hidden">
+    <div className="w-full min-h-screen overflow-x-hidden relative">
+      {/* Space Background */}
+      <SpaceBackground />
+
       {/* Header */}
-      <header className="relative w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-border bg-background/95 backdrop-blur">
+      <header className="relative w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-black/30 backdrop-blur-md z-10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Software Engineering Modules</h1>
-            <p className="text-sm text-muted-foreground mt-1">Interactive 3D Learning Experience</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Software Engineering Modules</h1>
+            <p className="text-sm text-white/70 mt-1">Interactive 3D Learning Experience</p>
           </div>
         </div>
       </header>
 
       {/* Gaming PC Hero Section */}
-      <section className="relative w-full py-20 bg-gradient-to-b from-background to-background/50">
+      <section className="relative w-full py-10 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="w-full h-96 sm:h-[500px] rounded-2xl overflow-hidden bg-muted/50">
-            <Suspense fallback={<div className="w-full h-full bg-muted rounded-lg animate-pulse" />}>
+          <div className="w-full h-[500px] sm:h-[600px]">
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading 3D Model...</div>}>
               <GamingPC />
             </Suspense>
           </div>
@@ -66,17 +72,17 @@ export default function Home() {
       </section>
 
       {/* Stylized Planet Section */}
-      <section className="w-full py-20 bg-background">
+      <section className="w-full py-10 z-10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Explore Learning Modules</h2>
-            <p className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Explore Learning Modules</h2>
+            <p className="text-lg text-white/70 text-balance max-w-2xl mx-auto">
               Interactive 3D experience showcasing your learning journey
             </p>
           </div>
 
-          <div className="w-full h-96 sm:h-[500px] rounded-2xl overflow-hidden bg-muted/50">
-            <Suspense fallback={<div className="w-full h-full bg-muted rounded-lg animate-pulse" />}>
+          <div className="w-full h-[500px] sm:h-[600px]">
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading 3D Model...</div>}>
               <StylizedPlanet />
             </Suspense>
           </div>
@@ -84,7 +90,7 @@ export default function Home() {
       </section>
 
       {/* Colorful Cards Section */}
-      <section className="w-full py-20 bg-muted/30">
+      <section className="w-full py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
@@ -155,8 +161,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12 bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
+      <footer className="w-full py-12 border-t border-white/10 bg-black/30 backdrop-blur-md relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/60">
           <p>&copy; 2026 Software Engineering Modules. All rights reserved. | Powered by Next.js & React Three Fiber</p>
         </div>
       </footer>
