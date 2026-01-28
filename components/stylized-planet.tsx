@@ -2,12 +2,17 @@
 
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, PerspectiveCamera, Environment, OrbitControls } from '@react-three/drei'
-import { Suspense } from 'react'
+import { Suspense, memo, useMemo } from 'react'
 
-function StylizedPlanetModel() {
-  const { scene } = useGLTF('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stylized_planet-0i4u8mdbnFAtOMXGwrdAoNW4GF3zpJ.glb')
+const MODEL_URL = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stylized_planet-0i4u8mdbnFAtOMXGwrdAoNW4GF3zpJ.glb'
+
+// Preload the model
+useGLTF.preload(MODEL_URL)
+
+const StylizedPlanetModel = memo(function StylizedPlanetModel() {
+  const { scene } = useGLTF(MODEL_URL)
   
-  const clonedScene = scene.clone()
+  const clonedScene = useMemo(() => scene.clone(), [scene])
   
   return (
     <>
@@ -20,12 +25,21 @@ function StylizedPlanetModel() {
       <OrbitControls autoRotate autoRotateSpeed={4} enableZoom={true} enablePan={true} />
     </>
   )
-}
+})
 
 export default function StylizedPlanet() {
   return (
     <div className="w-full h-full">
-      <Canvas gl={{ alpha: true }} style={{ background: 'transparent' }}>
+      <Canvas 
+        gl={{ 
+          alpha: true,
+          powerPreference: 'high-performance',
+          failIfMajorPerformanceCaveat: false
+        }}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
+        style={{ background: 'transparent' }}
+      >
         <Suspense fallback={null}>
           <StylizedPlanetModel />
         </Suspense>
