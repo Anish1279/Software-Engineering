@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Design Engineering - Comprehensive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .diagram-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .process-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+
+        .process-step h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 10px;
+        }
+
+        .architecture-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .arch-layer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .component-box {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .component-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .pattern-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .pattern-card h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .interactive-demo {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .demo-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .demo-button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .output-box {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            min-height: 100px;
+            border: 2px dashed #667eea;
+        }
+
+        .golden-rules {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .golden-rules h4 {
+            margin-bottom: 15px;
+        }
+
+        .golden-rules ol {
+            margin-left: 20px;
+        }
+
+        .golden-rules li {
+            margin: 10px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .code-example {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-example pre {
+            margin: 0;
+        }
+
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MODULE 5: Design Engineering</h1>
+            <p>A Comprehensive Guide to Software Design Principles and Practices</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#design-process">Design Process</a></li>
+                <li><a href="#design-concepts">Design Concepts</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#component-design">Component Design</a></li>
+                <li><a href="#ui-design">UI Design</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Design Process and Quality Section -->
+            <section id="design-process">
+                <h2>Design Process and Design Quality</h2>
+                
+                <p>The design process in software engineering is a systematic approach to creating solutions that meet user requirements while maintaining high quality standards. This process transforms requirements into a blueprint for constructing software, serving as the foundation for all subsequent development activities.</p>
+
+                <div class="diagram-container">
+                    <h3>The Design Process Flow</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <h4>1. Analysis</h4>
+                            <p>Understanding requirements and constraints</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>2. Design</h4>
+                            <p>Creating architectural and detailed designs</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>3. Evaluation</h4>
+                            <p>Assessing design quality and alternatives</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>4. Refinement</h4>
+                            <p>Iterating and improving the design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Design Quality Attributes</h3>
+                <p>Design quality is measured through several critical attributes that ensure the software system is robust, maintainable, and effective. These attributes include functionality, reliability, usability, efficiency, maintainability, and portability. Each attribute contributes to the overall success of the software product.</p>
+
+                <div class="pattern-grid">
+                    <div class="pattern-card">
+                        <h4>🎯 Functionality</h4>
+                        <p>The design must completely implement all required features and functions, ensuring that the software does what it's supposed to do accurately and completely.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>🛡️ Reliability</h4>
+                        <p>The system should perform consistently under specified conditions, handling errors gracefully and maintaining data integrity throughout operations.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>👤 Usability</h4>
+                        <p>The design should facilitate easy learning and efficient use, providing clear interfaces and intuitive interactions for end users.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>⚡ Efficiency</h4>
+                        <p>Optimal use of resources including time, memory, and processing power, ensuring the system performs well under various load conditions.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>🔧 Maintainability</h4>
+                        <p>The design should allow for easy modification, debugging, and enhancement, with clear structure and comprehensive documentation.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>🔄 Portability</h4>
+                        <p>The system should be adaptable to different environments and platforms with minimal modification required.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design Concepts Section -->
+            <section id="design-concepts">
+                <h2>Design Concepts</h2>
+                
+                <p>Design concepts are fundamental principles that guide software designers in creating effective solutions. These concepts provide a theoretical foundation for making design decisions and help ensure that the resulting software is well-structured, maintainable, and scalable.</p>
+
+                <h3>Core Design Principles</h3>
+
+                <div class="component-box">
+                    <h4>Abstraction</h4>
+                    <p>Abstraction is the process of identifying and focusing on the essential characteristics of an entity while ignoring irrelevant details. In software design, abstraction helps manage complexity by allowing designers to work at different levels of detail. Procedural abstraction hides the details of how a procedure works, while data abstraction hides how data is represented and manipulated.</p>
+                </div>
+
+                <div class="component-box">
+                    <h4>Modularity</h4>
+                    <p>Modularity involves dividing software into separate, independent modules that can be developed, tested, and maintained independently. Good modular design results in components with high cohesion (elements within a module work together closely) and low coupling (minimal dependencies between modules). This makes the system easier to understand, modify, and reuse.</p>
+                </div>
+
+                <div class="component-box">
+                    <h4>Encapsulation</h4>
+                    <p>Encapsulation bundles data and the methods that operate on that data within a single unit, hiding the internal implementation details from external entities. This information hiding principle protects the integrity of the data and allows internal implementation changes without affecting other parts of the system.</p>
+                </div>
+
+                <div class="component-box">
+                    <h4>Separation of Concerns</h4>
+                    <p>This principle advocates dividing a program into distinct sections, each addressing a specific concern or aspect of functionality. By separating different aspects of the software (like business logic, data access, and presentation), designers create systems that are easier to understand, develop, and maintain.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💡 Key Insight</h4>
+                    <p>These design concepts work together synergistically. For example, abstraction enables modularity, which in turn facilitates encapsulation and separation of concerns. Understanding how these principles interact is crucial for creating well-designed software systems.</p>
+                </div>
+            </section>
+
+            <!-- Design Model and Pattern-Based Design Section -->
+            <section id="design-model">
+                <h2>The Design Model and Pattern-Based Software Design</h2>
+                
+                <p>The design model is a comprehensive representation of the software that encompasses multiple perspectives including data, architecture, interface, and component designs. It serves as a bridge between requirements and implementation, providing a detailed blueprint for construction.</p>
+
+                <h3>Components of the Design Model</h3>
+
+                <div class="architecture-diagram">
+                    <div class="arch-layer">
+                        <h4>Data Design</h4>
+                        <p>Models data structures, databases, and data flow</p>
+                    </div>
+                    <div class="arch-layer">
+                        <h4>Architectural Design</h4>
+                        <p>Defines overall system structure and relationships</p>
+                    </div>
+                    <div class="arch-layer">
+                        <h4>Interface Design</h4>
+                        <p>Specifies user and system interactions</p>
+                    </div>
+                    <div class="arch-layer">
+                        <h4>Component Design</h4>
+                        <p>Details individual module implementations</p>
+                    </div>
+                </div>
+
+                <h3>Pattern-Based Software Design</h3>
+                <p>Design patterns are proven solutions to recurring design problems. They provide templates for solving common challenges in software design, promoting reuse and standardization. Pattern-based design accelerates development, improves quality, and facilitates communication among team members by establishing a common vocabulary.</p>
+
+                <div class="pattern-grid">
+                    <div class="pattern-card">
+                        <h4>Creational Patterns</h4>
+                        <p>Focus on object creation mechanisms, controlling how objects are created to increase flexibility and reuse. Examples include Singleton, Factory, and Builder patterns, which help manage object instantiation in various scenarios.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>Structural Patterns</h4>
+                        <p>Deal with object composition, defining relationships between entities. Patterns like Adapter, Composite, and Decorator help organize classes and objects into larger structures while keeping them flexible.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>Behavioral Patterns</h4>
+                        <p>Concerned with algorithms and assignment of responsibilities between objects. Observer, Strategy, and Command patterns define how objects communicate and distribute responsibility.</p>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>Design Pattern Example: Observer Pattern</h3>
+                    <button class="demo-button" onclick="demonstrateObserver()">Demonstrate Observer Pattern</button>
+                    <div class="output-box" id="observer-output">Click the button to see the Observer pattern in action</div>
+                </div>
+            </section>
+
+            <!-- Creating Architectural Design Section -->
+            <section id="architecture">
+                <h2>Creating an Architectural Design</h2>
+                
+                <p>Architectural design represents the highest level of design abstraction, defining the overall structure of the software system. It establishes the framework within which detailed design and implementation occur, making critical decisions about system organization, structural patterns, and component interaction.</p>
+
+                <h3>Software Architecture</h3>
+                <p>Software architecture is the organizational structure of a software system, including components, their externally visible properties, and relationships among them. It provides a blueprint that describes how the system is decomposed into components and how these components interact to achieve system objectives.</p>
+
+                <div class="diagram-container">
+                    <h3>Key Architectural Concerns</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <h4>Structure</h4>
+                            <p>Organization of components and their relationships</p>
+                        </div>
+                        <div class="process-step">
+                            <h4>Behavior</h4>
+                            <p>How components interact and collaborate</p>
+                        </div>
+                        <div class="process-step">
+                            <h4>Quality</h4>
+                            <p>Non-functional requirements like performance and security</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Data Design</h3>
+                <p>Data design focuses on organizing and structuring data within the system. It involves creating data models that represent how information is stored, accessed, and manipulated. Good data design ensures data integrity, optimizes access patterns, and supports the system's functional requirements while maintaining scalability.</p>
+
+                <h3>Architectural Styles and Patterns</h3>
+                <p>Architectural styles provide proven structural organizations for software systems. Each style offers different trade-offs in terms of complexity, performance, and maintainability.</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Architectural Style</th>
+                            <th>Description</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Layered Architecture</strong></td>
+                            <td>Organizes system into horizontal layers, each providing services to the layer above</td>
+                            <td>Enterprise applications, systems requiring clear separation of concerns</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client-Server</strong></td>
+                            <td>Distributes processing between clients requesting services and servers providing them</td>
+                            <td>Distributed systems, web applications, database systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Model-View-Controller (MVC)</strong></td>
+                            <td>Separates data (Model), presentation (View), and logic (Controller)</td>
+                            <td>Interactive applications, web frameworks, user interfaces</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microservices</strong></td>
+                            <td>Structures application as collection of loosely coupled services</td>
+                            <td>Large-scale applications requiring independent deployment and scaling</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Event-Driven</strong></td>
+                            <td>Components communicate through events and event handlers</td>
+                            <td>Real-time systems, user interfaces, asynchronous processing</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Assessing Alternative Architectural Designs</h3>
+                <p>When multiple architectural approaches are possible, systematic evaluation helps select the most appropriate design. Assessment considers factors like performance requirements, development constraints, maintenance needs, and scalability requirements. Techniques like Architecture Tradeoff Analysis Method (ATAM) help evaluate how well each alternative satisfies quality attributes.</p>
+
+                <h3>Mapping Data Flow into Software Architecture</h3>
+                <p>Data flow mapping translates how information moves through the system into architectural components. This process identifies data transformations, storage points, and communication paths, ensuring the architecture supports efficient data processing. Transform flow and transaction flow are two common approaches for mapping data flow to architectural structure.</p>
+
+                <div class="interactive-demo">
+                    <h3>Interactive: Visualize Layered Architecture</h3>
+                    <button class="demo-button" onclick="showLayeredArchitecture()">Show Layered Architecture</button>
+                    <div class="output-box" id="architecture-output">Click to visualize a layered architecture</div>
+                </div>
+            </section>
+
+            <!-- Component-Level Design Section -->
+            <section id="component-design">
+                <h2>Modeling Component-Level Design</h2>
+                
+                <p>Component-level design elaborates the architectural design by specifying the internal structure and algorithms of individual software components. This detailed design phase transforms architectural components into implementable units, defining their interfaces, internal data structures, and processing logic.</p>
+
+                <h3>Designing Class-Based Components</h3>
+                <p>In object-oriented systems, components are typically implemented as classes or groups of related classes. Class-based design involves identifying attributes (data) and operations (methods) for each class, establishing relationships between classes (inheritance, association, aggregation), and ensuring each class has a single, well-defined responsibility.</p>
+
+                <div class="code-example">
+                    <pre>
+// Example: Well-designed class component
+class ShoppingCart {
+    // Encapsulated data
+    private items: CartItem[];
+    private customer: Customer;
+    
+    // Constructor
+    constructor(customer: Customer) {
+        this.customer = customer;
+        this.items = [];
+    }
+    
+    // Public interface methods
+    addItem(product: Product, quantity: number): void {
+        // Implementation encapsulated
+        const item = new CartItem(product, quantity);
+        this.items.push(item);
+        this.calculateTotal();
+    }
+    
+    removeItem(productId: string): void {
+        this.items = this.items.filter(
+            item => item.product.id !== productId
+        );
+        this.calculateTotal();
+    }
+    
+    // Private helper method
+    private calculateTotal(): number {
+        return this.items.reduce(
+            (sum, item) => sum + item.getSubtotal(), 0
+        );
+    }
+}</pre>
+                </div>
+
+                <h3>Conducting Component-Level Design</h3>
+                <p>The process of component-level design follows a systematic approach. First, identify all components derived from the architectural design. Then, for each component, elaborate its responsibilities and interfaces. Next, design the internal structure including data structures and algorithms. Finally, review the design for completeness, correctness, and adherence to design principles.</p>
+
+                <div class="component-box">
+                    <h4>Design Guidelines for Components</h4>
+                    <p>Effective component design follows several important guidelines. Components should have high cohesion, meaning their elements work together toward a common purpose. They should exhibit low coupling, minimizing dependencies on other components. Interfaces should be clear and minimal, exposing only what's necessary. Components should be designed for reuse when possible, and they should handle errors gracefully without exposing internal details.</p>
+                </div>
+
+                <h3>Object Constraint Language (OCL)</h3>
+                <p>OCL is a formal language for describing constraints and queries on object-oriented models. It allows designers to specify precise rules and conditions that objects must satisfy, going beyond what can be expressed in diagrams alone. OCL expressions can define invariants (conditions that must always be true), preconditions (conditions required before an operation executes), and postconditions (conditions guaranteed after an operation completes).</p>
+
+                <div class="highlight-box">
+                    <h4>OCL Example</h4>
+                    <p><code>context ShoppingCart inv: self.items->size() >= 0</code></p>
+                    <p>This constraint ensures the shopping cart never has a negative number of items, expressing a business rule formally.</p>
+                </div>
+
+                <h3>Designing Conventional Components</h3>
+                <p>While object-oriented design dominates modern software development, conventional structured design techniques remain relevant for certain types of components, particularly in systems programming and embedded software. These components are designed using procedural decomposition, with emphasis on algorithms and data structures rather than objects. Structured design uses tools like structure charts and pseudocode to specify component behavior.</p>
+            </section>
+
+            <!-- User Interface Design Section -->
+            <section id="ui-design">
+                <h2>Performing User Interface Design</h2>
+                
+                <p>User interface design creates the front-end of software systems, determining how users interact with and experience the software. Effective UI design balances aesthetic appeal with functional efficiency, ensuring users can accomplish their goals intuitively and efficiently.</p>
+
+                <h3>Golden Rules of User Interface Design</h3>
+                
+                <div class="golden-rules">
+                    <h4>The Eight Golden Rules (Shneiderman)</h4>
+                    <ol>
+                        <li><strong>Strive for consistency:</strong> Maintain consistent terminology, visual design, and interaction patterns throughout the interface. Users should encounter familiar elements and behaviors across different parts of the system.</li>
+                        
+                        <li><strong>Enable frequent users to use shortcuts:</strong> Provide accelerators like keyboard shortcuts, macros, and command abbreviations that allow experienced users to work more efficiently.</li>
+                        
+                        <li><strong>Offer informative feedback:</strong> Every user action should generate appropriate system feedback. For frequent actions, feedback can be modest; for infrequent or major actions, it should be more substantial.</li>
+                        
+                        <li><strong>Design dialogs to yield closure:</strong> Sequences of actions should have a clear beginning, middle, and end. Users should receive confirmation when they complete a task successfully.</li>
+                        
+                        <li><strong>Offer simple error handling:</strong> Design the system to prevent errors when possible. When errors occur, provide clear explanations and simple recovery mechanisms.</li>
+                        
+                        <li><strong>Permit easy reversal of actions:</strong> Users should be able to undo their actions, reducing anxiety and encouraging exploration. Support multiple levels of undo when appropriate.</li>
+                        
+                        <li><strong>Support internal locus of control:</strong> Users should feel in control of the system rather than being controlled by it. Design interfaces that respond to user actions rather than surprising users with unexpected behavior.</li>
+                        
+                        <li><strong>Reduce short-term memory load:</strong> Don't require users to remember information from one part of the interface to another. Display relevant information when and where it's needed.</li>
+                    </ol>
+                </div>
+
+                <h3>User Interface Analysis</h3>
+                <p>Before designing the interface, thorough analysis of users and their tasks is essential. This includes understanding user characteristics (experience level, domain knowledge, technical skills), identifying primary tasks and workflows, analyzing the usage environment, and determining performance requirements. User personas and scenarios help designers maintain focus on real user needs throughout the design process.</p>
+
+                <h3>Interface Design Steps</h3>
+                
+                <div class="diagram-container">
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <h4>Step 1: Define Models</h4>
+                            <p>Create user, task, and environmental models</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>Step 2: Identify Actions</h4>
+                            <p>Determine user actions and system responses</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>Step 3: Design Layout</h4>
+                            <p>Arrange interface elements and controls</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="process-step">
+                            <h4>Step 4: Implement</h4>
+                            <p>Build prototype and refine based on feedback</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Interface Analysis</h3>
+                <p>Interface analysis examines the interaction between users and the system, identifying information flow, control mechanisms, and interaction patterns. This analysis considers both human-computer interaction and system-to-system interfaces, ensuring all interaction points are well-designed and efficient.</p>
+
+                <h3>Design Evaluation</h3>
+                <p>UI designs must be evaluated throughout the development process to ensure they meet user needs and usability standards. Evaluation techniques include heuristic evaluation (expert review against established guidelines), cognitive walkthrough (simulating user problem-solving), usability testing (observing real users), and A/B testing (comparing alternative designs).</p>
+
+                <div class="pattern-grid">
+                    <div class="pattern-card">
+                        <h4>Heuristic Evaluation</h4>
+                        <p>Experts review the interface against established usability principles, identifying potential problems before user testing. Quick and cost-effective method for finding common usability issues.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>Usability Testing</h4>
+                        <p>Real users perform tasks while observers note problems and measure performance. Provides direct evidence of usability issues and user behavior patterns.</p>
+                    </div>
+                    <div class="pattern-card">
+                        <h4>Cognitive Walkthrough</h4>
+                        <p>Designers step through tasks from the user's perspective, questioning whether each step is learnable and understandable. Particularly effective for evaluating learnability.</p>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>UI Design Principles Demo</h3>
+                    <button class="demo-button" onclick="demonstrateUIFeedback()">Good Feedback Example</button>
+                    <button class="demo-button" onclick="demonstrateUIConsistency()">Consistency Example</button>
+                    <div class="output-box" id="ui-demo-output">Click buttons to see UI principles in action</div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💡 Best Practice</h4>
+                    <p>Iterative design is crucial for UI success. Don't expect to get the interface right on the first attempt. Design, prototype, test, and refine repeatedly. Early and frequent user feedback prevents costly redesigns later in development.</p>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary">
+                <h2>Summary and Integration</h2>
+                
+                <p>Design engineering encompasses a comprehensive set of activities that transform requirements into implementable software solutions. From high-level architectural decisions to detailed component specifications and user interface layouts, each aspect of design contributes to creating software that is functional, maintainable, and user-friendly.</p>
+
+                <p>The design process is inherently iterative and creative, requiring both systematic methodology and innovative thinking. Successful designers master fundamental principles like abstraction, modularity, and encapsulation while also understanding how to apply proven patterns and architectural styles to solve specific problems.</p>
+
+                <p>Quality must be built into the design from the beginning. By considering quality attributes like reliability, usability, and maintainability throughout the design process, developers create systems that not only meet functional requirements but also provide long-term value through ease of modification and enhancement.</p>
+
+                <p>User interface design deserves special attention as it directly impacts user satisfaction and productivity. Following established guidelines like the golden rules, conducting thorough user analysis, and evaluating designs through multiple techniques ensures interfaces that are both powerful and pleasant to use.</p>
+
+                <p>Ultimately, effective design engineering requires balancing competing concerns: functionality versus simplicity, performance versus maintainability, innovation versus proven patterns. By understanding the principles, techniques, and tools presented in this module, software engineers can make informed design decisions that lead to successful software systems.</p>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Design Engineering Module | Comprehensive Educational Resource</p>
+            <p>Created for understanding software design principles and practices</p>
+        </footer>
+    </div>
+
+    <script>
+        // Interactive demonstrations
+        
+        function demonstrateObserver() {
+            const output = document.getElementById('observer-output');
+            output.innerHTML = `
+                <h4>Observer Pattern Demonstration</h4>
+                <p><strong>Scenario:</strong> Temperature sensor notifying multiple displays</p>
+                <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 5px;">
+                    <p>📊 <strong>Subject (Temperature Sensor):</strong> Temperature changed to 25°C</p>
+                    <p style="margin-left: 20px;">└─ 📱 Observer 1 (Mobile Display): Updating display to 25°C</p>
+                    <p style="margin-left: 20px;">└─ 🖥️ Observer 2 (Desktop Display): Updating display to 25°C</p>
+                    <p style="margin-left: 20px;">└─ 📧 Observer 3 (Alert System): No alert needed (within normal range)</p>
+                </div>
+                <p style="margin-top: 10px;"><em>The Observer pattern allows multiple objects to be notified of state changes automatically, promoting loose coupling between components.</em></p>
+            `;
+        }
+
+        function showLayeredArchitecture() {
+            const output = document.getElementById('architecture-output');
+            output.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="background: #667eea; color: white; padding: 15px; margin: 5px; border-radius: 5px;">
+                        <strong>Presentation Layer</strong><br>
+                        <small>User Interface, Views, Controllers</small>
+                    </div>
+                    <div style="font-size: 20px; color: #667eea;">↓</div>
+                    <div style="background: #764ba2; color: white; padding: 15px; margin: 5px; border-radius: 5px;">
+                        <strong>Business Logic Layer</strong><br>
+                        <small>Services, Business Rules, Workflows</small>
+                    </div>
+                    <div style="font-size: 20px; color: #764ba2;">↓</div>
+                    <div style="background: #f093fb; color: white; padding: 15px; margin: 5px; border-radius: 5px;">
+                        <strong>Data Access Layer</strong><br>
+                        <small>Repositories, Data Mappers, DAOs</small>
+                    </div>
+                    <div style="font-size: 20px; color: #f093fb;">↓</div>
+                    <div style="background: #4facfe; color: white; padding: 15px; margin: 5px; border-radius: 5px;">
+                        <strong>Database Layer</strong><br>
+                        <small>Database, File System, External Services</small>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;"><em>Each layer depends only on layers below it, promoting separation of concerns and maintainability.</em></p>
+            `;
+        }
+
+        function demonstrateUIFeedback() {
+            const output = document.getElementById('ui-demo-output');
+            output.innerHTML = '<p>⏳ Processing your request...</p>';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <div style="background: #d4edda; border-left: 4px solid #28a745; padding: 15px; border-radius: 5px;">
+                        <h4 style="color: #155724; margin: 0 0 10px 0;">✓ Success!</h4>
+                        <p style="color: #155724; margin: 0;">Your action has been completed successfully. This is an example of <strong>informative feedback</strong> - one of the golden rules of UI design.</p>
+                    </div>
+                    <p style="margin-top: 10px;"><em>Good feedback tells users what happened, whether it was successful, and what to expect next.</em></p>
+                `;
+            }, 1500);
+        }
+
+        function demonstrateUIConsistency() {
+            const output = document.getElementById('ui-demo-output');
+            output.innerHTML = `
+                <h4>Consistency Example</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                    <div style="background: white; padding: 15px; border-radius: 5px; border: 2px solid #667eea;">
+                        <h5 style="color: #667eea;">Form 1: User Registration</h5>
+                        <input type="text" placeholder="Username" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px;">
+                        <input type="email" placeholder="Email" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px;">
+                        <button style="background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 5px;">Submit</button>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 5px; border: 2px solid #667eea;">
+                        <h5 style="color: #667eea;">Form 2: Contact Us</h5>
+                        <input type="text" placeholder="Name" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px;">
+                        <input type="email" placeholder="Email" style="width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px;">
+                        <button style="background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 5px;">Submit</button>
+                    </div>
+                </div>
+                <p style="margin-top: 10px;"><em>Notice how both forms use identical styling, spacing, and button placement. This <strong>consistency</strong> helps users predict behavior and reduces learning time.</em></p>
+            `;
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

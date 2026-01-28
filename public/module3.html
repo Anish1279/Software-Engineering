@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Software Requirements - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .subsection {
+            margin: 25px 0;
+        }
+
+        .subsection-title {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .explanation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .visualization {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .diagram {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .box {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .functional-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .non-functional-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .user-req-box {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .system-req-box {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 10px;
+        }
+
+        .example-box {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4facfe;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .important {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .process-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 20px;
+            max-width: 200px;
+        }
+
+        .process-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .flow-step {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MODULE 3: Software Requirements</h1>
+            <p>A Comprehensive Guide to Requirements Engineering</p>
+        </header>
+
+        <div class="content">
+            <!-- Introduction -->
+            <div class="section">
+                <h2 class="section-title">Introduction to Software Requirements</h2>
+                <div class="explanation">
+                    <p>Software requirements form the foundation of any successful software project. They describe what the system should do and under what constraints it should operate. Think of requirements as a blueprint for a building—just as architects need detailed plans before construction begins, software developers need clear requirements before writing code. Without well-defined requirements, projects often suffer from scope creep, budget overruns, and ultimately deliver products that don't meet user needs.</p>
+                    <br>
+                    <p>Requirements engineering is the systematic process of discovering, documenting, analyzing, and maintaining these requirements throughout the software development lifecycle. It bridges the gap between what stakeholders need and what developers build.</p>
+                </div>
+            </div>
+
+            <!-- Functional vs Non-Functional Requirements -->
+            <div class="section">
+                <h2 class="section-title">1. Functional and Non-Functional Requirements</h2>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">Understanding Functional Requirements</h3>
+                    <div class="explanation">
+                        <p>Functional requirements describe the specific behaviors, functions, or capabilities that a system must provide. They answer the question: "What should the system do?" These are the features and operations that users directly interact with and depend upon. Each functional requirement typically describes an action the system must perform in response to an input or condition.</p>
+                        <br>
+                        <p>For instance, in an online banking system, a functional requirement might state that "the system shall allow users to transfer money between accounts." This is concrete, testable, and describes a specific capability the system must have.</p>
+                    </div>
+
+                    <div class="visualization">
+                        <div class="diagram">
+                            <div class="box functional-box">User Login Authentication</div>
+                            <div class="box functional-box">Data Processing & Calculation</div>
+                            <div class="box functional-box">Report Generation</div>
+                            <div class="box functional-box">Database Operations</div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Examples of Functional Requirements:</div>
+                        <p><strong>E-commerce System:</strong> The system shall allow customers to add items to a shopping cart, apply discount codes, and complete purchases using multiple payment methods.</p>
+                        <p><strong>Library Management:</strong> The system shall enable librarians to check out books, calculate late fees automatically, and send overdue notifications to borrowers.</p>
+                        <p><strong>Hospital System:</strong> The system shall allow doctors to view patient medical history, prescribe medications, and schedule follow-up appointments.</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Understanding Non-Functional Requirements</h3>
+                    <div class="explanation">
+                        <p>Non-functional requirements (NFRs) specify how well the system should perform its functions. They define quality attributes, constraints, and standards that the system must meet. While functional requirements tell us what the system does, non-functional requirements tell us how well it does it. These requirements often determine the overall user experience and system success, even though they're not directly visible features.</p>
+                        <br>
+                        <p>Non-functional requirements are crucial because a system might have all the right features but still fail if it's too slow, unreliable, or difficult to use. They address concerns like performance, security, usability, reliability, and scalability.</p>
+                    </div>
+
+                    <div class="visualization">
+                        <div class="diagram">
+                            <div class="box non-functional-box">Performance (Speed)</div>
+                            <div class="box non-functional-box">Security & Privacy</div>
+                            <div class="box non-functional-box">Usability</div>
+                            <div class="box non-functional-box">Reliability & Availability</div>
+                            <div class="box non-functional-box">Scalability</div>
+                            <div class="box non-functional-box">Maintainability</div>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <div class="example-title">Examples of Non-Functional Requirements:</div>
+                        <p><strong>Performance:</strong> The system shall process credit card transactions within 3 seconds under normal load conditions.</p>
+                        <p><strong>Security:</strong> All user passwords shall be encrypted using AES-256 encryption and stored securely in the database.</p>
+                        <p><strong>Availability:</strong> The system shall maintain 99.9% uptime, allowing for no more than 8.76 hours of downtime per year.</p>
+                        <p><strong>Usability:</strong> New users shall be able to complete their first transaction within 5 minutes without requiring training.</p>
+                        <p><strong>Scalability:</strong> The system shall support up to 10,000 concurrent users without performance degradation.</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Functional Requirements</th>
+                                <th>Non-Functional Requirements</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Focus</strong></td>
+                                <td>What the system does</td>
+                                <td>How well the system performs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Question Answered</strong></td>
+                                <td>"What functionality is needed?"</td>
+                                <td>"How should it perform?"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Captured In</strong></td>
+                                <td>Use cases, user stories</td>
+                                <td>Quality attributes, constraints</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Examples</strong></td>
+                                <td>Login, Search, Calculate, Process</td>
+                                <td>Speed, Security, Usability, Reliability</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Measurability</strong></td>
+                                <td>Present or absent (Yes/No)</td>
+                                <td>Measured on a scale (degrees)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Requirements -->
+            <div class="section">
+                <h2 class="section-title">2. User Requirements</h2>
+                <div class="explanation">
+                    <p>User requirements are statements written in natural language, accompanied by diagrams, that describe what services the system is expected to provide and the constraints under which it must operate. These requirements are written from the user's perspective and should be understandable by people without technical training. The goal is to capture what users need to accomplish with the system, not how the system will be implemented.</p>
+                    <br>
+                    <p>Think of user requirements as the "wish list" from the people who will actually use the system. A teacher using an online grading system might express a user requirement as: "I need to be able to enter grades for all my students and have the system automatically calculate their final scores based on the weighting I've set up." Notice how this doesn't mention databases, algorithms, or user interfaces—it simply states what the user needs to accomplish.</p>
+                </div>
+
+                <div class="visualization">
+                    <div class="grid-container">
+                        <div class="card">
+                            <div class="card-title">📝 Natural Language</div>
+                            <p>Written in everyday language that stakeholders can understand without technical knowledge. Avoids jargon and technical terminology.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">👥 User-Centric</div>
+                            <p>Focuses on user goals, tasks, and needs rather than system implementation. Describes what users want to achieve.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📊 Supported by Diagrams</div>
+                            <p>Often includes use case diagrams, workflow diagrams, or mockups to visually represent user interactions with the system.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">🎯 Goal-Oriented</div>
+                            <p>Expresses the outcomes users want to achieve, allowing flexibility in how the system meets those needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="important">
+                    <strong>Key Principle:</strong> User requirements should be written at a level that allows users to verify that the system will meet their needs without requiring them to understand technical implementation details. If a user can't understand the requirement, it's probably too technical.
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Example User Requirements for a Hospital Management System:</div>
+                    <p><strong>UR1:</strong> As a doctor, I need to access a patient's complete medical history, including previous diagnoses, medications, and test results, so I can make informed treatment decisions.</p>
+                    <p><strong>UR2:</strong> As a nurse, I need to record vital signs (temperature, blood pressure, heart rate) for my patients and have the system alert me if any values are outside normal ranges.</p>
+                    <p><strong>UR3:</strong> As a patient, I want to schedule appointments online, receive confirmation messages, and get reminders before my appointment time.</p>
+                    <p><strong>UR4:</strong> As an administrator, I need to generate reports showing department-wise patient statistics, revenue, and resource utilization.</p>
+                </div>
+            </div>
+
+            <!-- System Requirements -->
+            <div class="section">
+                <h2 class="section-title">3. System Requirements</h2>
+                <div class="explanation">
+                    <p>System requirements are more detailed, technical specifications that describe exactly what the system must do to satisfy the user requirements. These are written for developers, testers, and other technical stakeholders. While user requirements describe user-level services, system requirements break these down into precise technical specifications that can be implemented and tested.</p>
+                    <br>
+                    <p>System requirements serve as the contract between the client and the development team. They provide enough detail that developers know exactly what to build, and testers know exactly what to verify. Continuing our teacher example, the user requirement about entering grades would expand into multiple system requirements specifying the data structures for grades, validation rules for grade entries, algorithms for calculating weighted averages, and error handling procedures.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Types of System Requirements</h3>
+                    <div class="grid-container">
+                        <div class="card">
+                            <div class="card-title" style="color: #667eea;">Functional System Requirements</div>
+                            <p>Detailed specifications of system functions, including inputs, processing, outputs, and error handling. These are precise and testable.</p>
+                            <br>
+                            <p><strong>Example:</strong> The system shall validate that the entered grade is a numeric value between 0 and 100. If an invalid value is entered, the system shall display an error message and prevent submission.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="color: #f5576c;">Non-Functional System Requirements</div>
+                            <p>Technical constraints and quality attributes that define system properties like performance metrics, security standards, and interface requirements.</p>
+                            <br>
+                            <p><strong>Example:</strong> The system shall encrypt all grade data using TLS 1.3 during transmission and AES-256 when stored in the database.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Transforming User Requirements into System Requirements:</div>
+                    <p><strong>User Requirement:</strong> "I need to search for books in the library catalog."</p>
+                    <br>
+                    <p><strong>Corresponding System Requirements:</strong></p>
+                    <p><strong>SR1:</strong> The system shall provide a search interface accepting keywords, author names, titles, ISBN numbers, and subject categories as search criteria.</p>
+                    <p><strong>SR2:</strong> The system shall perform full-text searches across all catalog entries and return results within 2 seconds for 95% of queries.</p>
+                    <p><strong>SR3:</strong> The system shall display search results in a paginated list showing title, author, publication year, availability status, and location for each item.</p>
+                    <p><strong>SR4:</strong> The system shall support Boolean operators (AND, OR, NOT) and phrase searches using quotation marks.</p>
+                    <p><strong>SR5:</strong> The system shall rank search results by relevance using a weighted algorithm prioritizing exact title matches, then author matches, then keyword matches.</p>
+                </div>
+
+                <div class="important">
+                    <strong>Important Distinction:</strong> User requirements express WHAT users need to accomplish, while system requirements specify HOW the system will enable users to accomplish those goals. System requirements are more detailed, technical, and serve as the blueprint for development.
+                </div>
+            </div>
+
+            <!-- Interface Specification -->
+            <div class="section">
+                <h2 class="section-title">4. Interface Specification</h2>
+                <div class="explanation">
+                    <p>Interface specifications define how different components of a system interact with each other and with external systems. Just as electrical plugs need to match their sockets, software components need clearly defined interfaces to communicate effectively. These specifications document the communication protocols, data formats, function calls, and interaction patterns that enable different parts of the system to work together seamlessly.</p>
+                    <br>
+                    <p>There are three main types of interfaces that need specification: user interfaces (how people interact with the system), software interfaces (how software components communicate with each other), and hardware interfaces (how software interacts with physical devices). Each type requires careful documentation to ensure smooth integration and functionality.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Types of Interface Specifications</h3>
+                    <div class="grid-container">
+                        <div class="card">
+                            <div class="card-title">🖥️ User Interface (UI)</div>
+                            <p>Defines how users interact with the system, including screen layouts, navigation flows, input methods, and visual design standards.</p>
+                            <br>
+                            <p><strong>Specifies:</strong> Screen designs, button placements, menu structures, input validation messages, accessibility features, and responsive design requirements.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">⚙️ Software Interface</div>
+                            <p>Describes communication between software components, including APIs, data exchange formats, and integration protocols.</p>
+                            <br>
+                            <p><strong>Specifies:</strong> API endpoints, data formats (JSON, XML), authentication methods, error codes, and integration protocols (REST, SOAP).</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">🔌 Hardware Interface</div>
+                            <p>Details how software communicates with physical devices such as printers, scanners, sensors, or other peripherals.</p>
+                            <br>
+                            <p><strong>Specifies:</strong> Device drivers, communication protocols, data transmission rates, signal formats, and error handling for hardware failures.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📡 Communication Interface</div>
+                            <p>Defines network communication protocols, message formats, and data exchange mechanisms between distributed systems.</p>
+                            <br>
+                            <p><strong>Specifies:</strong> Network protocols (HTTP, TCP/IP), message queuing systems, data serialization, encryption standards, and timeout handling.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Example: Payment Gateway Interface Specification</div>
+                    <p><strong>Interface Name:</strong> Payment Processing API</p>
+                    <p><strong>Protocol:</strong> HTTPS REST API</p>
+                    <p><strong>Authentication:</strong> OAuth 2.0 with API keys</p>
+                    <br>
+                    <p><strong>Request Format:</strong></p>
+                    <p>POST /api/v1/payments/process</p>
+                    <p>Content-Type: application/json</p>
+                    <p>Authorization: Bearer {access_token}</p>
+                    <br>
+                    <p><strong>Request Body:</strong> JSON containing amount, currency, card details, billing address</p>
+                    <p><strong>Response Codes:</strong> 200 (Success), 400 (Invalid Request), 401 (Unauthorized), 500 (Server Error)</p>
+                    <p><strong>Response Format:</strong> JSON containing transaction ID, status, timestamp, and confirmation details</p>
+                    <p><strong>Timeout:</strong> 30 seconds maximum for transaction processing</p>
+                    <p><strong>Error Handling:</strong> Retry logic with exponential backoff for network failures</p>
+                </div>
+
+                <div class="important">
+                    <strong>Why Interface Specifications Matter:</strong> Clear interface specifications prevent integration problems, reduce development time, enable parallel development by different teams, and make it easier to replace or upgrade components without affecting the entire system. They serve as contracts between different parts of the system.
+                </div>
+            </div>
+
+            <!-- Software Requirements Document -->
+            <div class="section">
+                <h2 class="section-title">5. The Software Requirements Specification (SRS) Document</h2>
+                <div class="explanation">
+                    <p>The Software Requirements Specification (SRS) document is the comprehensive written record that captures all requirements for a software system. Think of it as the master blueprint that guides the entire development process. It serves multiple audiences: clients use it to verify that developers understand their needs, developers use it as their implementation guide, testers use it to create test cases, and project managers use it to plan resources and schedules.</p>
+                    <br>
+                    <p>A well-written SRS document is complete, consistent, unambiguous, verifiable, modifiable, and traceable. It bridges the gap between what stakeholders envision and what developers build, serving as the single source of truth throughout the project lifecycle. Without a solid SRS, projects often suffer from miscommunication, scope creep, and failed expectations.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Standard SRS Document Structure</h3>
+                    <div class="flowchart">
+                        <div class="flow-step">1. Introduction (Purpose, Scope, Definitions, Overview)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">2. Overall Description (Product Perspective, Functions, User Characteristics, Constraints)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">3. Specific Requirements (Functional, Non-Functional, Interface Requirements)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">4. System Features (Detailed Feature Descriptions)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">5. External Interface Requirements (User, Hardware, Software, Communications)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">6. Other Requirements (Database, Legal, Quality Standards)</div>
+                        <div class="arrow">↓</div>
+                        <div class="flow-step">7. Appendices (Glossary, Models, Analysis Documents)</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SRS Characteristics</th>
+                                <th>Description</th>
+                                <th>Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Complete</strong></td>
+                                <td>Includes all requirements and addresses all user scenarios</td>
+                                <td>Prevents gaps that lead to incomplete systems</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Consistent</strong></td>
+                                <td>No conflicting requirements or contradictions</td>
+                                <td>Avoids confusion and implementation conflicts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unambiguous</strong></td>
+                                <td>Each requirement has only one interpretation</td>
+                                <td>Ensures everyone understands requirements the same way</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Verifiable</strong></td>
+                                <td>Can be tested to confirm implementation</td>
+                                <td>Enables quality assurance and validation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modifiable</strong></td>
+                                <td>Easy to change with minimal impact</td>
+                                <td>Accommodates evolving requirements</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Traceable</strong></td>
+                                <td>Each requirement can be tracked through development</td>
+                                <td>Ensures all requirements are implemented and tested</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="important">
+                    <strong>Industry Standard:</strong> The IEEE 830 standard provides the most widely recognized template for SRS documents. Following this standard ensures your requirements documentation meets professional quality expectations and facilitates communication with stakeholders who are familiar with industry norms.
+                </div>
+            </div>
+
+            <!-- Requirements Engineering Process -->
+            <div class="section">
+                <h2 class="section-title">6. Requirements Engineering Process</h2>
+                <div class="explanation">
+                    <p>Requirements engineering is not a one-time activity but a continuous process that spans the entire software development lifecycle. It's like detective work combined with translation services—you must discover what stakeholders really need (which they may not articulate clearly), analyze and organize this information, document it precisely, and then continually verify that the documented requirements remain accurate and complete as the project evolves.</p>
+                    <br>
+                    <p>This process involves several interconnected activities: elicitation (gathering requirements), analysis (refining and organizing them), specification (documenting them formally), and validation (confirming they're correct). Each activity feeds into the others, and the process often requires multiple iterations as understanding deepens and circumstances change.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Requirements Engineering Lifecycle</h3>
+                    <div class="process-diagram">
+                        <div class="process-step">
+                            <div class="process-circle">1</div>
+                            <strong>Elicitation</strong>
+                            <p>Gathering requirements from stakeholders</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="process-step">
+                            <div class="process-circle">2</div>
+                            <strong>Analysis</strong>
+                            <p>Refining and organizing requirements</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="process-step">
+                            <div class="process-circle">3</div>
+                            <strong>Specification</strong>
+                            <p>Documenting requirements formally</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="process-step">
+                            <div class="process-circle">4</div>
+                            <strong>Validation</strong>
+                            <p>Verifying requirements accuracy</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="process-step">
+                            <div class="process-circle">5</div>
+                            <strong>Management</strong>
+                            <p>Handling changes and traceability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="card">
+                        <div class="card-title">Requirements Elicitation</div>
+                        <p>The process of discovering requirements through interaction with stakeholders. This involves interviews, surveys, observation, workshops, prototyping, and document analysis. The challenge is that stakeholders often don't know exactly what they want or can't articulate it clearly.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Requirements Analysis</div>
+                        <p>Examining gathered requirements to detect conflicts, ambiguities, and incompleteness. This includes prioritization, feasibility assessment, and modeling of requirements using diagrams and prototypes. The goal is to refine raw requirements into clear, consistent specifications.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Requirements Specification</div>
+                        <p>Documenting requirements in a formal, structured manner that serves as an agreement between stakeholders and developers. This typically results in the SRS document and supporting materials like models and prototypes.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Requirements Validation</div>
+                        <p>Ensuring that documented requirements accurately reflect stakeholder needs and are feasible to implement. This involves reviews, inspections, prototyping, and test case development to verify requirements before development begins.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Requirements Management</div>
+                        <p>Tracking requirements throughout the project, managing changes, maintaining traceability from requirements through design and implementation, and ensuring that evolving requirements are properly assessed and controlled.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feasibility Studies -->
+            <div class="section">
+                <h2 class="section-title">7. Feasibility Studies</h2>
+                <div class="explanation">
+                    <p>Before committing significant resources to a software project, organizations conduct feasibility studies to determine whether the project is worth pursuing. Think of a feasibility study as a reality check—it answers the fundamental question: "Should we actually build this system?" This analysis examines whether the proposed system is technically achievable, economically justifiable, legally compliant, operationally practical, and schedulable within reasonable timeframes.</p>
+                    <br>
+                    <p>Feasibility studies save organizations from costly mistakes by identifying potential problems before major investments are made. They provide decision-makers with the information needed to approve, modify, or reject a project proposal. A thorough feasibility study examines multiple dimensions of the proposed system and delivers recommendations based on objective analysis.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Types of Feasibility Analysis</h3>
+                    <div class="grid-container">
+                        <div class="card">
+                            <div class="card-title">💻 Technical Feasibility</div>
+                            <p><strong>Question:</strong> Can we build it with current technology?</p>
+                            <br>
+                            <p><strong>Examines:</strong> Available technology, required expertise, technical risks, system integration capabilities, and whether the required performance can be achieved.</p>
+                            <br>
+                            <p><strong>Example:</strong> "Do we have developers with the necessary skills in machine learning to build this AI-powered recommendation system?"</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">💰 Economic Feasibility</div>
+                            <p><strong>Question:</strong> Is it financially worthwhile?</p>
+                            <br>
+                            <p><strong>Examines:</strong> Development costs, operational costs, expected benefits, return on investment (ROI), payback period, and cost-benefit analysis.</p>
+                            <br>
+                            <p><strong>Example:</strong> "Will the $2 million development cost be justified by the projected $5 million in cost savings over five years?"</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">⚖️ Legal Feasibility</div>
+                            <p><strong>Question:</strong> Are there legal issues or compliance requirements?</p>
+                            <br>
+                            <p><strong>Examines:</strong> Copyright issues, data privacy laws (GDPR, HIPAA), contractual obligations, licensing requirements, and regulatory compliance.</p>
+                            <br>
+                            <p><strong>Example:</strong> "Does our patient management system comply with HIPAA regulations for protecting health information?"</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">⚙️ Operational Feasibility</div>
+                            <p><strong>Question:</strong> Will it work in the organization?</p>
+                            <br>
+                            <p><strong>Examines:</strong> User acceptance, organizational culture, change management needs, training requirements, and impact on existing operations.</p>
+                            <br>
+                            <p><strong>Example:</strong> "Will employees adapt to the new automated workflow system, or will they resist the change?"</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📅 Schedule Feasibility</div>
+                            <p><strong>Question:</strong> Can we complete it on time?</p>
+                            <br>
+                            <p><strong>Examines:</strong> Project timeline, resource availability, critical deadlines, dependency on external factors, and risk of delays.</p>
+                            <br>
+                            <p><strong>Example:</strong> "Can we launch the e-commerce platform before the holiday shopping season begins?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Sample Feasibility Study Conclusion:</div>
+                    <p><strong>Project:</strong> Automated Inventory Management System</p>
+                    <br>
+                    <p><strong>Technical Feasibility:</strong> ✓ Feasible - Required technologies (RFID, cloud computing) are mature and available.</p>
+                    <p><strong>Economic Feasibility:</strong> ✓ Feasible - Estimated ROI of 150% within 3 years; payback period of 18 months.</p>
+                    <p><strong>Legal Feasibility:</strong> ✓ Feasible - No legal barriers identified; complies with industry standards.</p>
+                    <p><strong>Operational Feasibility:</strong> ⚠ Caution - Requires significant staff training and change management.</p>
+                    <p><strong>Schedule Feasibility:</strong> ✓ Feasible - Can be completed in 10 months with current team size.</p>
+                    <br>
+                    <p><strong>Recommendation:</strong> Proceed with project. Allocate additional budget for comprehensive training program to address operational concerns.</p>
+                </div>
+            </div>
+
+            <!-- Requirements Elicitation and Analysis -->
+            <div class="section">
+                <h2 class="section-title">8. Requirements Elicitation and Analysis</h2>
+                <div class="explanation">
+                    <p>Requirements elicitation is often the most challenging part of requirements engineering because it involves extracting knowledge from people who may not be able to clearly articulate what they need. It's like being a detective and a translator simultaneously—you must ask the right questions, observe how work is actually done (not just how people describe it), and translate tacit knowledge into explicit requirements.</p>
+                    <br>
+                    <p>The challenge stems from several factors: stakeholders often don't know what they want until they see what they don't want, different stakeholders have conflicting needs, people have difficulty describing their work processes in detail, and organizational politics can obscure the real requirements. Successful elicitation requires using multiple techniques and engaging stakeholders throughout the process.</p>
+                </div>
+
+                <div class="visualization">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Requirements Elicitation Techniques</h3>
+                    <div class="grid-container">
+                        <div class="card">
+                            <div class="card-title">🎤 Interviews</div>
+                            <p>One-on-one or group discussions with stakeholders to gather detailed information about their needs, workflows, and pain points.</p>
+                            <br>
+                            <p><strong>Best for:</strong> In-depth understanding of complex processes and stakeholder perspectives.</p>
+                            <p><strong>Types:</strong> Structured (fixed questions), Semi-structured (flexible agenda), Unstructured (exploratory)</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📋 Questionnaires & Surveys</div>
+                            <p>Written questions distributed to a large group of stakeholders to gather information efficiently from many people.</p>
+                            <br>
+                            <p><strong>Best for:</strong> Collecting quantitative data and reaching geographically distributed stakeholders.</p>
+                            <p><strong>Advantage:</strong> Can reach many people quickly; statistical analysis possible.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">👁️ Observation & Ethnography</div>
+                            <p>Watching users perform their tasks in their natural environment to understand actual workflows and unspoken needs.</p>
+                            <br>
+                            <p><strong>Best for:</strong> Discovering requirements that users take for granted or can't articulate.</p>
+                            <p><strong>Key insight:</strong> What people say they do often differs from what they actually do.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">🤝 Workshops & Focus Groups</div>
+                            <p>Facilitated group sessions bringing together diverse stakeholders to discuss requirements, resolve conflicts, and build consensus.</p>
+                            <br>
+                            <p><strong>Best for:</strong> Rapid requirements gathering and conflict resolution among stakeholders.</p>
+                            <p><strong>Technique:</strong> Joint Application Development (JAD) sessions are popular.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">🎨 Prototyping</div>
+                            <p>Creating mock-ups or working models of the system to help stakeholders visualize and refine their requirements.</p>
+                            <br>
+                            <p><strong>Best for:</strong> Clarifying user interface requirements and validating understanding.</p>
+                            <p><strong>Types:</strong> Paper prototypes, wireframes, clickable mockups, working prototypes.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📚 Document Analysis</div>
+                            <p>Reviewing existing documentation, forms, reports, and procedures to understand current processes and information needs.</p>
+                            <br>
+                            <p><strong>Best for:</strong> Understanding existing systems and regulatory requirements.</p>
+                            <p><strong>Sources:</strong> Policy documents, user manuals, forms, regulations, existing system documentation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Requirements Analysis Techniques</h3>
+                    <div class="explanation">
+                        <p>Once requirements are gathered, they must be analyzed to ensure they're complete, consistent, and feasible. Analysis involves several key activities that transform raw requirements into a refined, organized set of specifications ready for implementation.</p>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Analysis Activity</th>
+                                    <th>Purpose</th>
+                                    <th>Techniques Used</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Conflict Resolution</strong></td>
+                                    <td>Identify and resolve contradictory requirements from different stakeholders</td>
+                                    <td>Negotiation, prioritization matrices, stakeholder meetings</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Prioritization</strong></td>
+                                    <td>Determine which requirements are most important for project success</td>
+                                    <td>MoSCoW method (Must, Should, Could, Won't), ranking, Kano model</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Modeling</strong></td>
+                                    <td>Create visual representations to clarify requirements and system behavior</td>
+                                    <td>Use case diagrams, data flow diagrams, state diagrams, entity-relationship diagrams</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Classification</strong></td>
+                                    <td>Organize requirements into categories for easier management</td>
+                                    <td>Functional vs non-functional, user vs system, grouping by feature or module</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Risk Analysis</strong></td>
+                                    <td>Identify requirements that pose implementation or business risks</td>
+                                    <td>Risk matrices, technical feasibility assessment, dependency analysis</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="important">
+                    <strong>Critical Success Factor:</strong> Requirements elicitation is most successful when it's an iterative, collaborative process. Don't expect to get all requirements right in the first pass. Plan for multiple rounds of elicitation, analysis, and validation, and maintain continuous communication with stakeholders throughout the project.
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">Common Requirements Elicitation Challenges and Solutions:</div>
+                    <p><strong>Challenge:</strong> Stakeholders say "I'll know it when I see it" but can't describe requirements.</p>
+                    <p><strong>Solution:</strong> Use prototyping to give stakeholders something concrete to react to and refine.</p>
+                    <br>
+                    <p><strong>Challenge:</strong> Different stakeholders have conflicting requirements.</p>
+                    <p><strong>Solution:</strong> Facilitate workshops to build consensus and use prioritization techniques to make trade-offs explicit.</p>
+                    <br>
+                    <p><strong>Challenge:</strong> Stakeholders are too busy to participate in requirements activities.</p>
+                    <p><strong>Solution:</strong> Use efficient techniques like surveys for initial gathering, followed by focused workshops for critical decisions.</p>
+                    <br>
+                    <p><strong>Challenge:</strong> Requirements keep changing throughout the project.</p>
+                    <p><strong>Solution:</strong> Implement a formal change management process and use agile approaches that embrace change.</p>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="section" style="border-bottom: none;">
+                <h2 class="section-title">Summary and Key Takeaways</h2>
+                <div class="explanation">
+                    <p>Requirements engineering forms the foundation of successful software development. By thoroughly understanding and documenting what the system should do (functional requirements) and how well it should perform (non-functional requirements), we create a clear roadmap for development. User requirements capture what stakeholders need in their own language, while system requirements translate these needs into technical specifications that developers can implement.</p>
+                    <br>
+                    <p>The SRS document serves as the contract between stakeholders and developers, providing a single source of truth throughout the project. Interface specifications ensure that different components can communicate effectively. Feasibility studies prevent costly mistakes by validating that projects are technically achievable, economically viable, and operationally practical before major resources are committed.</p>
+                    <br>
+                    <p>Requirements elicitation and analysis are iterative processes that require multiple techniques and continuous stakeholder engagement. Success comes from using appropriate elicitation methods, carefully analyzing gathered information for completeness and consistency, and maintaining clear communication throughout the project lifecycle. Remember: the quality of your requirements directly impacts the quality of your final software product. Invest time in getting requirements right, and you'll save exponentially more time in development and maintenance.</p>
+                </div>
+
+                <div class="important">
+                    <strong>Final Thought:</strong> Good requirements engineering is not about creating perfect documentation—it's about building shared understanding between all stakeholders. The goal is ensuring that everyone involved in the project has a clear, common vision of what needs to be built and why it matters.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
