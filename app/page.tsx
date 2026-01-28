@@ -9,13 +9,17 @@ import {
   SheetTitle,
   SheetDescription,
 } from '@/components/ui/sheet'
+import Lazy3DLoader from '@/components/lazy-3d-loader'
+import Loading3D from '@/components/loading-3d'
 
 const GamingPC = dynamic(() => import('@/components/gaming-pc'), {
   ssr: false,
+  loading: () => <Loading3D text="Loading Gaming PC..." />
 })
 
 const StylizedPlanet = dynamic(() => import('@/components/stylized-planet'), {
   ssr: false,
+  loading: () => <Loading3D text="Loading Planet..." />
 })
 
 const SpaceBackground = dynamic(() => import('@/components/space-background'), {
@@ -64,9 +68,14 @@ export default function Home() {
       <section className="relative w-full py-4 sm:py-6 md:py-10 z-10">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50 text-sm">Loading 3D Model...</div>}>
-              <GamingPC />
-            </Suspense>
+            <Lazy3DLoader 
+              fallback={<Loading3D text="Loading Gaming PC..." />}
+              rootMargin="200px"
+            >
+              <Suspense fallback={<Loading3D text="Loading Gaming PC..." />}>
+                <GamingPC />
+              </Suspense>
+            </Lazy3DLoader>
           </div>
         </div>
       </section>
@@ -82,9 +91,14 @@ export default function Home() {
           </div>
 
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50 text-sm">Loading 3D Model...</div>}>
-              <StylizedPlanet />
-            </Suspense>
+            <Lazy3DLoader 
+              fallback={<Loading3D text="Loading Planet..." />}
+              rootMargin="100px"
+            >
+              <Suspense fallback={<Loading3D text="Loading Planet..." />}>
+                <StylizedPlanet />
+              </Suspense>
+            </Lazy3DLoader>
           </div>
         </div>
       </section>
