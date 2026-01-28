@@ -21,9 +21,9 @@ function GamingPCModel() {
         child.position.sub(center)
       })
       
-      // Scale model to fit nicely
+      // Scale model to fit nicely - increased for better initial view
       const maxDim = Math.max(size.x, size.y, size.z)
-      const scale = 4 / maxDim
+      const scale = 6 / maxDim
       groupRef.current.scale.multiplyScalar(scale)
     }
   }, [scene])
@@ -31,7 +31,7 @@ function GamingPCModel() {
   return (
     <>
       <Environment preset="sunset" />
-      <PerspectiveCamera makeDefault position={[0, 0, 3.7]} fov={50} />
+      <PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={50} />
       <OrbitControls 
         autoRotate 
         autoRotateSpeed={4}
@@ -53,7 +53,7 @@ export default function GamingPC() {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 50 }}
+        camera={{ position: [0, 0, 2.5], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
