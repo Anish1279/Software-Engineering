@@ -51,20 +51,20 @@ export default function Home() {
       <SpaceBackground />
 
       {/* Header */}
-      <header className="relative w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-black/30 backdrop-blur-md z-10">
+      <header className="relative w-full py-4 sm:py-6 px-3 sm:px-6 lg:px-8 border-b border-white/10 bg-black/30 backdrop-blur-md z-10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">Software Engineering Modules</h1>
-            <p className="text-sm text-white/70 mt-1">Interactive 3D Learning Experience</p>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">Software Engineering Modules</h1>
+            <p className="text-xs sm:text-sm text-white/70 mt-1">Interactive 3D Learning Experience</p>
           </div>
         </div>
       </header>
 
       {/* Gaming PC Hero Section */}
-      <section className="relative w-full py-10 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="w-full h-[500px] sm:h-[600px]">
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading 3D Model...</div>}>
+      <section className="relative w-full py-4 sm:py-6 md:py-10 z-10">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50 text-sm">Loading 3D Model...</div>}>
               <GamingPC />
             </Suspense>
           </div>
@@ -72,17 +72,17 @@ export default function Home() {
       </section>
 
       {/* Stylized Planet Section */}
-      <section className="w-full py-10 z-10 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Explore Learning Modules</h2>
-            <p className="text-lg text-white/70 text-balance max-w-2xl mx-auto">
+      <section className="w-full py-6 sm:py-8 md:py-10 z-10 relative">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4">Explore Learning Modules</h2>
+            <p className="text-sm sm:text-base md:text-lg text-white/70 text-balance max-w-2xl mx-auto px-2">
               Interactive 3D experience showcasing your learning journey
             </p>
           </div>
 
-          <div className="w-full h-[500px] sm:h-[600px]">
-            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading 3D Model...</div>}>
+          <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
+            <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50 text-sm">Loading 3D Model...</div>}>
               <StylizedPlanet />
             </Suspense>
           </div>
@@ -90,9 +90,9 @@ export default function Home() {
       </section>
 
       {/* Colorful Cards Section */}
-      <section className="w-full py-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <section className="w-full py-10 sm:py-14 md:py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
             {[
               {
                 id: 1,
@@ -140,16 +140,16 @@ export default function Home() {
                 onClick={() => handleCardClick(card)}
                 className="group cursor-pointer text-left w-full"
               >
-                <div className={`h-full bg-gradient-to-br ${card.gradient} rounded-2xl p-6 text-white transition-all duration-300 hover:shadow-2xl hover:scale-105 transform`}>
-                  <div className="mb-4">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-3">
-                      <span className="text-lg font-bold">*</span>
+                <div className={`h-full bg-gradient-to-br ${card.gradient} rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 text-white transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] sm:hover:scale-105 transform`}>
+                  <div className="mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center mb-2 sm:mb-3">
+                      <span className="text-base sm:text-lg font-bold">*</span>
                     </div>
-                    <p className="text-xs font-semibold opacity-80 uppercase tracking-wider">{card.subtitle}</p>
+                    <p className="text-[10px] sm:text-xs font-semibold opacity-80 uppercase tracking-wider">{card.subtitle}</p>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{card.heading}</h3>
-                  <p className="text-sm opacity-90 mb-4 line-clamp-2">{card.description}</p>
-                  <div className="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2">{card.heading}</h3>
+                  <p className="text-xs sm:text-sm opacity-90 mb-3 sm:mb-4 line-clamp-2">{card.description}</p>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold group-hover:gap-3 transition-all">
                     <span>Explore</span>
                     <span>→</span>
                   </div>
@@ -161,24 +161,25 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12 border-t border-white/10 bg-black/30 backdrop-blur-md relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/60">
-          <p>&copy; 2026 Software Engineering Modules. All rights reserved. | Powered by Next.js & React Three Fiber</p>
+      <footer className="w-full py-6 sm:py-8 md:py-12 border-t border-white/10 bg-black/30 backdrop-blur-md relative z-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 text-center text-white/60">
+          <p className="text-xs sm:text-sm">&copy; 2026 Software Engineering Modules. All rights reserved.</p>
+          <p className="text-xs sm:text-sm mt-1 hidden sm:block">Powered by Next.js & React Three Fiber</p>
         </div>
       </footer>
 
       {/* Module Content Sheet */}
       <Sheet open={isSheetOpen} onOpenChange={handleSheetClose}>
-        <SheetContent side="right" className="w-full sm:max-w-3xl lg:max-w-5xl p-0 overflow-hidden">
-          <SheetHeader className="px-6 py-4 border-b border-border bg-background">
-            <SheetTitle className="text-xl font-bold">
+        <SheetContent side="right" className="w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl p-0 overflow-hidden">
+          <SheetHeader className="px-3 sm:px-6 py-3 sm:py-4 border-b border-border bg-background">
+            <SheetTitle className="text-base sm:text-lg md:text-xl font-bold">
               {selectedModule?.heading}
             </SheetTitle>
-            <SheetDescription>
+            <SheetDescription className="text-xs sm:text-sm">
               {selectedModule?.subtitle} - {selectedModule?.description}
             </SheetDescription>
           </SheetHeader>
-          <div className="h-[calc(100vh-100px)] overflow-hidden">
+          <div className="h-[calc(100vh-80px)] sm:h-[calc(100vh-100px)] overflow-hidden">
             {selectedModule && (
               <iframe
                 src={`/module${selectedModule.id}.html`}
