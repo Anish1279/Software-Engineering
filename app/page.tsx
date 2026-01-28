@@ -1,8 +1,15 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import EarthSphere from '@/components/earth-sphere'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet'
 
 const GamingPC = dynamic(() => import('@/components/gaming-pc'), {
   ssr: false,
@@ -12,7 +19,29 @@ const StylizedPlanet = dynamic(() => import('@/components/stylized-planet'), {
   ssr: false,
 })
 
+interface ModuleData {
+  id: number
+  title: string
+  subtitle: string
+  heading: string
+  description: string
+  gradient: string
+}
+
 export default function Home() {
+  const [selectedModule, setSelectedModule] = useState<ModuleData | null>(null)
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
+
+  const handleCardClick = (card: ModuleData) => {
+    setSelectedModule(card)
+    setIsSheetOpen(true)
+  }
+
+  const handleSheetClose = () => {
+    setIsSheetOpen(false)
+    setSelectedModule(null)
+  }
+
   return (
     <div className="w-full min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
@@ -100,17 +129,15 @@ export default function Home() {
                 gradient: 'from-orange-500 to-pink-500'
               }
             ].map((card) => (
-              <a
+              <button
                 key={card.id}
-                href={`/module${card.id}.html`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group cursor-pointer"
+                onClick={() => handleCardClick(card)}
+                className="group cursor-pointer text-left w-full"
               >
                 <div className={`h-full bg-gradient-to-br ${card.gradient} rounded-2xl p-6 text-white transition-all duration-300 hover:shadow-2xl hover:scale-105 transform`}>
                   <div className="mb-4">
                     <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-3">
-                      <span className="text-lg font-bold">⚙️</span>
+                      <span className="text-lg font-bold">*</span>
                     </div>
                     <p className="text-xs font-semibold opacity-80 uppercase tracking-wider">{card.subtitle}</p>
                   </div>
@@ -121,7 +148,7 @@ export default function Home() {
                     <span>→</span>
                   </div>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
@@ -133,6 +160,29 @@ export default function Home() {
           <p>&copy; 2026 Software Engineering Modules. All rights reserved. | Powered by Next.js & React Three Fiber</p>
         </div>
       </footer>
+
+      {/* Module Content Sheet */}
+      <Sheet open={isSheetOpen} onOpenChange={handleSheetClose}>
+        <SheetContent side="right" className="w-full sm:max-w-3xl lg:max-w-5xl p-0 overflow-hidden">
+          <SheetHeader className="px-6 py-4 border-b border-border bg-background">
+            <SheetTitle className="text-xl font-bold">
+              {selectedModule?.heading}
+            </SheetTitle>
+            <SheetDescription>
+              {selectedModule?.subtitle} - {selectedModule?.description}
+            </SheetDescription>
+          </SheetHeader>
+          <div className="h-[calc(100vh-100px)] overflow-hidden">
+            {selectedModule && (
+              <iframe
+                src={`/module${selectedModule.id}.html`}
+                className="w-full h-full border-0"
+                title={selectedModule.heading}
+              />
+            )}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   )
 }
